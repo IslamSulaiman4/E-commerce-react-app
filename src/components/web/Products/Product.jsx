@@ -31,23 +31,9 @@ export default function Products() {
       <div className='row'>
         <div className='col-md-4'>
           {data.subImages.map((img,index)=>
-          <React.Fragment key={index}>
-            <ReactImageMagnify {...{
-    smallImage: {
-        alt: 'Wristwatch by Ted Baker London',
-        isFluidWidth: true,
-        src: img.secure_url
-    },
-    largeImage: {
-        src: img.secure_url,
-        width: 1200,
-        height: 1800,
-
-    },
-    isHintEnabled:true,
-    enlargedImagePosition:'over'
-}} />
-          </React.Fragment>
+          <div key={index}>
+            <img className='py-1' src={img.secure_url} />
+          </div>
           )}
           <div className="col-lg-8">
             <h2>{data.price}</h2>
