@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useContext } from 'react'
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom'
-import ReactImageMagnify from 'react-image-magnify';
 import { CartContext } from '../Context/FeatureCart.jsx';
 
 export default function Products() {
