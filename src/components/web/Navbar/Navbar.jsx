@@ -1,7 +1,25 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, useNavigate} from 'react-router-dom'
+import { UserContext } from '../Context/User.jsx';
+import { CartContext } from '../Context/FeatureCart.jsx';
+import './Navbar.css'
+
+
+
 
 export default function Navbar() {
+  let {userToken,setUserToken,userData,setUserData}= useContext(UserContext);
+  let {cartData} = useContext(CartContext);
+  
+let navigate=useNavigate();
+const  logout=()=>{
+ localStorage.removeItem('userToken');
+   setUserToken(null);
+   setUserData(null);
+   navigate('/');
+ }
+ 
+
   return (
     <div>      <nav className="navbar navbar-expand-lg bg-body-tertiary">
     <div className="container ">
@@ -13,30 +31,43 @@ export default function Navbar() {
       <ul className="navbar-nav m-auto mb-2 mb-lg-0">
        
         <li className="nav-item">
-          <a className="nav-link" href="#">Home</a>
+          <Link className="nav-link" to="/">Home</Link>
         </li>
 
 
         <li className="nav-item">
-          <a className="nav-link" href="#">Categories</a>
+          <Link className="nav-link" to="/categories">Categories</Link>
         </li>
 
 
         <li className="nav-item">
         <a className="nav-link" href="#">Products</a>
       </li>
-     
-     
+      {userToken? <li className="nav-item">
+        <Link className="nav-link" to='/cart'>Cart <span className='text-danger'> {cartData}</span></Link>
+        
+      </li>:null}
+
       </ul>
       <ul className="navbar-nav">
+
       <li className="nav-item dropdown">
       <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Dropdown
+        {userData!=null?userData.user.userName:"Account"}
       </a>
       <ul className="dropdown-menu ">
+        {userToken==null? <>
         <li><Link className="dropdown-item" to="/register">register</Link></li>
         <li><hr className="dropdown-divider" /></li>
-        <li><a className="dropdown-item" href="#">login</a></li>
+        <li><Link className="dropdown-item" to="/login">login</Link></li>
+        </>    
+: <><li><Link className="dropdown-item" to="/profile">Profile</Link></li>
+                  <li><hr className="dropdown-divider" /></li>
+                  <li><Link className="dropdown-item" onClick={logout}  to="/">logout</Link></li>
+                  </>}
+
+        
+
       </ul>
     </li>
       </ul>

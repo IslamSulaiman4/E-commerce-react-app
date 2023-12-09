@@ -1,29 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Input from '../../Shared/Input.jsx'
-import { registerSchema } from '../Validation/Validate.jsx';
-import { useFormik, validateYupSchema } from 'formik';
+import {LoginSchema } from '../Validation/Validate.jsx';
+import { useFormik} from 'formik';
 import axios from 'axios';
 import {toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../Context/User.jsx';
+import { Link } from 'react-router-dom';
 
-export default function Register() {
+export default function Login() {
+    const navigate=useNavigate();
+    let {userToken,setUserToken} =useContext(UserContext);
+    if(userToken){
+navigate(-1);
+    }
+
+ 
+    
     const initialValues={
-        userName:'',
         email:'',
         password:'',
-        image:null,
     }
     const onSubmit=async users=>{
-        const formData =new FormData();
-        formData.append("userName",users.userName);
-        formData.append("email",users.email);
-        formData.append("password",users.password);
-        formData.append("image",users.image);
-
-        const {data}=await axios.post(' https://ecommerce-node4.vercel.app/auth/signup',formData);
+   const {data}=await axios.post(' https://ecommerce-node4.vercel.app/auth/signin',users);
         if(data.message=='success'){
-            toast.success('Account created successfully! please verify your email to login', {
+            localStorage.setItem("userToken",data.token);
+            setUserToken(data.token);
+            navigate('/');
+            toast.success('Login Successfully!', {
                 position: "top-right",
-                autoClose: false,
+                autoClose: 4000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -31,25 +37,17 @@ export default function Register() {
                 progress: undefined,
                 theme: "light",
                 });
+
     }}
 
-    const handleFieldChange= (event)=>{
-        formic.setFieldValue('image',event.target.files[0]);
-    }
     const formic= useFormik({
         initialValues,
         onSubmit,
-        validationSchema:registerSchema
+        validationSchema:LoginSchema
 
     });
     const inputs=[
-        {
-            name:'userName',
-            id:'name',
-            type:'text',
-            title:'User name',
-            value:formic.values.userName,
-        },
+
         {
             name:'email',
             id:'email',
@@ -64,13 +62,7 @@ export default function Register() {
             title:'password',
             value:formic.values.password,
         },
-        {
-            name:'image',
-            id:'image',
-            type:'file',
-            title:'User image',
-            onChange:handleFieldChange
-        }
+
     ];
     const renderInputs=inputs.map((input,index)=>
     <Input
@@ -80,7 +72,7 @@ export default function Register() {
       name={input.name}
        key={index } 
        value={input.value}
-       onChangef={input.onChange ||formic.handleChange}
+       onChangef={formic.handleChange}
        errors={formic.errors}
        onBlur={formic.handleBlur}
        touched={formic.touched}
@@ -90,10 +82,14 @@ export default function Register() {
   return (
     <div className='container m-5 text-center d-flex justify-content-center'>
         <div className='w-50 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
-        <h2>Create Account</h2>
-        <form onSubmit={formic.handleSubmit} encType='multipart/form-data'>
+        <h2>Log in</h2>
+        <form onSubmit={formic.handleSubmit} >
         {renderInputs}
-        <button type='submit' disabled={!formic.isValid}>Sign up</button>
+        <div className='d-flex flex-column  align-items-center gap-4 pt-4'>
+        <button type='submit' disabled={!formic.isValid}>Log in</button>
+         <button ><Link to='/sendCode'>Forget Password</Link></button>
+        </div>
+
         </form>
 
         </div>
