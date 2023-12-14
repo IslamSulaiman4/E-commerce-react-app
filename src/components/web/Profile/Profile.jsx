@@ -1,36 +1,41 @@
 import axios from 'axios'
 import React, { useContext } from 'react'
 import { UserContext } from '../Context/User.jsx'
-import { useQuery } from 'react-query';
+import style from './Profile.module.css';
+import { Link, Outlet } from 'react-router-dom';
 
 
 export default function Profile() {
-  let {userData} =useContext(UserContext);
+  let {userData,loading} =useContext(UserContext);
+  //console.log(userData)
 
-
-
-
-
-
-
-  return (
-    <div className='container m-5  d-flex justify-content-center'>
-    <div className='w-50 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
-    <form >
-<div >
-  <h2 className='border border-2 p-2 text-center '>Profile Information</h2>
-  </div>
-  <div className='mt-4 d-flex flex-column align-items-start'>
-  <h3>Name :{userData.user.userName}</h3>
-  <h3>Email: {userData.user.email}</h3>
-  <div className='mt-4 d-flex gap-4'>
-  <h3 >Image</h3>
-  <img  src={userData.user.image.secure_url} />
-  </div>
-
-  </div>  
-    </form>
+  if(loading){
+    return <div>
+      Loading ...
     </div>
+  }
+  return (
+    <aside className={`${style.profile}`}>
+      <div className={`${style.profileLinks}`}>
+        <nav>
+          <Link className='mt-3' to='/profile'>info</Link>
+          <Link to='/profile/contact'>contact</Link>
+          <Link to='/profile/order'>Orders</Link>
+        </nav>
+
+      </div>
+
+
+
+
+<div>
+  <Outlet />
 </div>
+
+
+
+
+    </aside>
+
   )
 }

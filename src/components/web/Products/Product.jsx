@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom'
 import { CartContext } from '../Context/FeatureCart.jsx';
+import { toast } from 'react-toastify';
 
 export default function Products() {
   const {addToCartContext}=useContext(CartContext);
@@ -19,7 +20,8 @@ export default function Products() {
 
   const addtoCart =async (productID)=>{
     const res= await addToCartContext(productID);
-    //return res;
+
+    return res;
   }
 
    if(isLoading){

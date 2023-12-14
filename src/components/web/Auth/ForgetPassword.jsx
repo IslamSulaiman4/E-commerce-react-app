@@ -1,12 +1,14 @@
 import React from 'react'
 import Input from '../../Shared/Input.jsx'
 import { useFormik } from 'formik';
-import {LoginSchema } from '../Validation/Validate.jsx'
+import {ForgetPasswordSchema} from '../Validation/Validate.jsx'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useQuery } from 'react-query';
 
 export default function ForgetPassword() {
+    const {loading} =useQuery();
     let navigate=useNavigate();
     const initialValues={
         email:'',
@@ -17,7 +19,6 @@ export default function ForgetPassword() {
     const onSubmit=async users=>{
         const {data}=await axios.patch(`${import.meta.env.VITE_API_URL}/auth/forgotPassword`,users);
         if(data.message=='success'){
-            navigate('/profile');
             toast.success('Your Password Changed Successfully!', {
                 position: "top-right",
                 autoClose: 4000,
@@ -27,15 +28,13 @@ export default function ForgetPassword() {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
-
-
-     
-         }}
+                });}
+                navigate('/login');
+ }
     const formic= useFormik({
         initialValues,
        onSubmit,
-        validationSchema:LoginSchema
+        validationSchema:ForgetPasswordSchema
 
     });
     const inputs=[
@@ -51,7 +50,7 @@ export default function ForgetPassword() {
             name:'password',
             id:'password',
             type:'password',
-            title:'password',
+            title:'Password',
             value:formic.values.password,
         },
         {
@@ -80,7 +79,11 @@ export default function ForgetPassword() {
     )
 
 
-
+    if(loading){
+        return <div>
+            Loading ...
+        </div>
+    }
     return (
         <div className='container m-5 text-center d-flex justify-content-center'>
         <div className='w-50 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>

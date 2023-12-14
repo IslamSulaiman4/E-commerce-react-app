@@ -9,7 +9,7 @@ import './Navbar.css'
 
 export default function Navbar() {
   let {userToken,setUserToken,userData,setUserData}= useContext(UserContext);
-  let {cartData} = useContext(CartContext);
+  let {count} = useContext(CartContext);
   
 let navigate=useNavigate();
 const  logout=()=>{
@@ -44,7 +44,7 @@ const  logout=()=>{
         <a className="nav-link" href="#">Products</a>
       </li>
       {userToken? <li className="nav-item">
-        <Link className="nav-link" to='/cart'>Cart <span className='text-danger'> {cartData}</span></Link>
+        <Link className="nav-link" to='/cart'>Cart <span className='badge bg-secondary'> {count}</span></Link>
         
       </li>:null}
 
@@ -53,7 +53,7 @@ const  logout=()=>{
 
       <li className="nav-item dropdown">
       <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        {userData!=null?userData.user.userName:"Account"}
+        {userData!=null?userData.userName:"Account"}
       </a>
       <ul className="dropdown-menu ">
         {userToken==null? <>

@@ -7,9 +7,11 @@ import {toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/User.jsx';
 import { Link } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 export default function Login() {
     const navigate=useNavigate();
+    const {loading} =useQuery();
     let {userToken,setUserToken} =useContext(UserContext);
     if(userToken){
 navigate(-1);
@@ -79,6 +81,11 @@ navigate(-1);
        />
     )
 
+    if(loading){
+        return <div>
+            Loading ...
+        </div>
+    }
   return (
     <div className='container m-5 text-center d-flex justify-content-center'>
         <div className='w-50 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>

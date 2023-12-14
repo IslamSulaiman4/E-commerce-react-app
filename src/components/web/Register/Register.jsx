@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Input from '../../Shared/Input.jsx'
 import { registerSchema } from '../Validation/Validate.jsx';
 import { useFormik, validateYupSchema } from 'formik';
 import axios from 'axios';
 import {toast } from 'react-toastify';
+import { useQuery } from 'react-query';
 
 export default function Register() {
+    const {loading} =useQuery();
+
     const initialValues={
         userName:'',
         email:'',
@@ -87,6 +90,11 @@ export default function Register() {
        />
     )
 
+    if(loading){
+        return <div>
+            Loading ...
+        </div>
+    }
   return (
     <div className='container m-5 text-center d-flex justify-content-center'>
         <div className='w-50 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
