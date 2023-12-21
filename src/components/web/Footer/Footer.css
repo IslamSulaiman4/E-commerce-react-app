@@ -1,0 +1,17 @@
+.footer p, .footer h2{
+    color: #f5f4f0 !important;
+}
+.footer .logo{
+    font-family: 'Pacifico', cursive;
+}
+.footer .border-end{
+    height: 70px;
+}
+.footer{
+    position: relative;
+    left: 0px;
+    bottom: 0px;
+    top: 500px;
+    width: 100%;
+    
+}

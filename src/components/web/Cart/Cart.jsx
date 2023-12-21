@@ -1,66 +1,81 @@
-import React, { useContext, useState } from 'react'
-import './Cart.css'
+import React, { useContext, useEffect, useState } from 'react'
+
 import { CartContext } from '../Context/FeatureCart.jsx'
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Loader from '../../Shared/Loader.jsx';
+import './Cart.css'
 
 export default function Cart() {
-    const {getCartContext,removeItemContext,clearCartContext,loading,setLoading}= useContext(CartContext);
+    const {getCartContext,removeItemContext,clearCartContext}= useContext(CartContext);
+    const [loading,setLoading]=useState(false);
+    let [subTotal, setSubTotal] = useState(0);
 
     const getCart= async()=>{
+      setLoading(true);
         const res= await getCartContext();
+        setLoading(false);
         return res;
 
     }
     const {data,isLoading} =useQuery("cart",getCart);
-  //console.log(data);
-
+useEffect(() => {
+  let total = 0;
+  if (data?.products) {
+    data.products.forEach((product) => {
+      total += product.details.price * product.quantity;
+    });
+  }
+  setSubTotal(total);
+}, [data]);
     const removeItem =async (productID)=>{
-  
+      setLoading(true);
         const res= await removeItemContext(productID);
         return res;
       
     }
 
     const clearCart= async()=>{
+      setLoading(true);
       const res=await clearCartContext();
      return res;
 
     }
 
     const decreaseQuantity = async (productID)=>{
+      setLoading(true);
       const token=localStorage.getItem('userToken');
-     console.log(token)
       const {data} =await axios.patch(`${import.meta.env.VITE_API_URL}/cart/decraseQuantity`,{productId:productID},{
         headers:{Authorization:`Tariq__${token}`}})
+        console.log(data)
         return data.cart;
       
   }
 
   const increaseQuantity = async (productID)=>{
-
+    setLoading(true);
     const token=localStorage.getItem('userToken');
-  console.log(token)
     const {data} =await axios.patch(`${import.meta.env.VITE_API_URL}/cart/incraseQuantity`,{productId:productID},{
       headers:{Authorization:`Tariq__${token}`}})
-     return data.cart;
+      console.log(data)
+      return data.cart;
     
 }
 
     if(isLoading==true)
         return
-        <div>Loading ...</div>
+        <Loader />
     
   return (
     <div className="cart ">
     <div className="container">
 
-      <div className="row">
-      <button className='clear-cart mt-5 mb-0' onClick={clearCart}>
-          Clear Cart</button>
-        <div className="cart-items pt-2">
-          <div className="products pt-5" id="products">
+      <div className="row g-1">
+
+        <div className=" cart-items pt-2">
+
+          <div className=" products pt-5" id="products">
 
             <div className="item">
               <div className="product-info">
@@ -76,30 +91,29 @@ export default function Cart() {
                 <h2>Subtotal</h2>
               </div>
             </div>
-            {loading?'Loading...':data?.products?(data.products.map((product)=>
-                    <div className="item" key={product._id}>
-                    <div className="product-info">
+            {loading? <Loader />:data?.products.length>0?(data.products.map((product)=>
+                    <div className="item cart-item pb-2 " key={product._id}>
+                    <div className="product-info  ">
+                    {loading?(<Loader />):
+                        <a className='remove' href="#" onClick={()=>removeItem(product.details._id)}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width={24}
+                          height={25}
+                          viewBox="0 0 24 25"
+                          fill="none"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M5.29289 5.79289C5.68342 5.40237 6.31658 5.40237 6.70711 5.79289L12 11.0858L17.2929 5.79289C17.6834 5.40237 18.3166 5.40237 18.7071 5.79289C19.0976 6.18342 19.0976 6.81658 18.7071 7.20711L13.4142 12.5L18.7071 17.7929C19.0976 18.1834 19.0976 18.8166 18.7071 19.2071C18.3166 19.5976 17.6834 19.5976 17.2929 19.2071L12 13.9142L6.70711 19.2071C6.31658 19.5976 5.68342 19.5976 5.29289 19.2071C4.90237 18.8166 4.90237 18.1834 5.29289 17.7929L10.5858 12.5L5.29289 7.20711C4.90237 6.81658 4.90237 6.18342 5.29289 5.79289Z"
+                            fill="#6C7275"
+                          />
+                        </svg>
+                      </a>}
                       <img src={product.details.mainImage.secure_url} />
                       <div className="product-details">
-                        <h2>{product.details.name}</h2>
-                        <span>Color:black</span>
-                        <a href="#" onClick={()=>removeItem(product.details._id)}>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width={24}
-                            height={25}
-                            viewBox="0 0 24 25"
-                            fill="none"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M5.29289 5.79289C5.68342 5.40237 6.31658 5.40237 6.70711 5.79289L12 11.0858L17.2929 5.79289C17.6834 5.40237 18.3166 5.40237 18.7071 5.79289C19.0976 6.18342 19.0976 6.81658 18.7071 7.20711L13.4142 12.5L18.7071 17.7929C19.0976 18.1834 19.0976 18.8166 18.7071 19.2071C18.3166 19.5976 17.6834 19.5976 17.2929 19.2071L12 13.9142L6.70711 19.2071C6.31658 19.5976 5.68342 19.5976 5.29289 19.2071C4.90237 18.8166 4.90237 18.1834 5.29289 17.7929L10.5858 12.5L5.29289 7.20711C4.90237 6.81658 4.90237 6.18342 5.29289 5.79289Z"
-                              fill="#6C7275"
-                            />
-                          </svg>
-                          {loading?'Loading...':'remove'}
-                        </a>
+                        <h2 className='name'>{product.details.name}</h2>
                       </div>
                     </div>
                     <div className="quantity">
@@ -120,7 +134,7 @@ export default function Cart() {
                           />
                         </svg>
                       </button>
-                      {loading?"Loading...":product.quantity>0?<span>{product.quantity}</span> :data.products.find(()=>removeItem(product.details._id)
+                      {loading?<Loader />:product.quantity>0?<span>{product.quantity}</span> :data.products.find(()=>removeItem(product.details._id)
                      )}
                       <button onClick={()=>increaseQuantity(product.details._id)}>
                         <svg 
@@ -146,50 +160,42 @@ export default function Cart() {
             )
             ):
             <h2>Cart is empty</h2>}
+
           </div>
 
-          <div className="cart-summary">
-            <h2>Cart summary</h2>
-            <div className="summery-items">
-              <div className="summary-item">
-                <div className="form-group">
-                  <input type="radio" /> <label>Free shipping</label>
-                </div>
-                <span>$0.00</span>
-              </div>
-              <div className="summary-item">
-                <div className="form-group">
-                  <input type="radio" /> <label>Express shipping</label>
-                </div>
-                <span>+$15.00</span>
-              </div>
-              <div className="summary-item">
-                <div className="form-group">
-                  <input type="radio" /> <label>Pick Up</label>
-                </div>
-                <span>%21.00</span>
-              </div>
-              <div className="summary-footer">
-                <label>Subtotal</label>
-                <span>$1234.00</span>
-              </div>
-              <div className="summary-footer">
-                <label className="total">Total</label>
-                <span>$1345.00</span>
-              </div>
-              <div className="checkout">
-                <Link to="/order">Chekout</Link>
-              </div>
-            </div>
           </div>
         </div>
-        
 
+<div className='cart-total py-3'>
+  <h2>Cart Total</h2>
+  <div className='summary  pt-2 pb-1'>
+    <p>SubTotal</p>
+    <span>${subTotal}</span>
+  </div>
+  <div className='summary pt-2 pb-1'>
+    <p>Shipping</p>
+    <span>+$15.00</span>
+  </div>
+  <div className='summary pt-2 pb-1'>
+    <p>Total</p>
+    <span>${subTotal+15}</span>
+  </div>
+
+</div>
+
+<div className='d-flex justify-content-evenly'>
+             
+               {data?.products.length>0? <Link className='cart-btns btn' to="/order">Chekout</Link>:null}           
+             
+              {data?.products?<button className=' m-0 cart-btns btn' onClick={clearCart}>
+          Clear Cart</button>:null }
+              
+</div>
 
 
       </div>
     </div>
-  </div>
+
 
   )
 }

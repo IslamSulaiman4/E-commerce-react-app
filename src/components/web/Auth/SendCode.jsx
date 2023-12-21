@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/User.jsx';
 import { SendCodeSchema } from '../Validation/Validate.jsx';
 import { useQuery } from 'react-query';
+import Loader from '../../Shared/Loader.jsx';
 
 export default function SendCode() {
     const navigate=useNavigate();
@@ -28,7 +29,7 @@ export default function SendCode() {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "dark",
         });
         }
         navigate('/forgetPassword');
@@ -68,18 +69,16 @@ export default function SendCode() {
     )
 
     if(loading){
-        return <div>
-            Loading ...
-        </div>
+        return <Loader />
     }
   return (
     <div className='container m-5 text-center d-flex justify-content-center'>
-        <div className='w-50 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
+        <div className='auth-Form w-75 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
         <h2>Send Code</h2>
-        <form onSubmit={formic.handleSubmit} >
+        <form className='' onSubmit={formic.handleSubmit} >
         {renderInputs}
         <div className='d-flex flex-column  align-items-center gap-4 pt-4'>
-        <button type='submit' disabled={!formic.isValid}>Send</button>
+        <button className='btn' type='submit' disabled={!formic.isValid}>Send</button>
         </div>
 
         </form>

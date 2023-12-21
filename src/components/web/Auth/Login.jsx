@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../Context/User.jsx';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import Loader from '../../Shared/Loader.jsx';
+import './Auth.css'
 
 export default function Login() {
     const navigate=useNavigate();
@@ -37,7 +39,7 @@ navigate(-1);
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "light",
+                theme: "dark",
                 });
 
     }}
@@ -82,19 +84,17 @@ navigate(-1);
     )
 
     if(loading){
-        return <div>
-            Loading ...
-        </div>
+        return <Loader />
     }
   return (
     <div className='container m-5 text-center d-flex justify-content-center'>
-        <div className='w-50 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
-        <h2>Log in</h2>
+        <div className='auth-Form w-75 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
+        <h2>Sign in</h2>
         <form onSubmit={formic.handleSubmit} >
         {renderInputs}
-        <div className='d-flex flex-column  align-items-center gap-4 pt-4'>
-        <button type='submit' disabled={!formic.isValid}>Log in</button>
-         <button ><Link to='/sendCode'>Forget Password</Link></button>
+        <div className=' d-flex flex-column  align-items-center gap-4 pt-4'>
+        <button className='btn' type='submit' disabled={!formic.isValid}>Log in</button>
+         <Link className='btn' to='/sendCode'>Forget Password</Link>
         </div>
 
         </form>

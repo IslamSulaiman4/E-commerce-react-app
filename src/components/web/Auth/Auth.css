@@ -1,0 +1,12 @@
+.auth-Form{
+    background-color: #f5f4f0;
+    border: 1px solid black;
+    font-family:  'Architects Daughter', cursive; 
+    font-weight: 500;
+}
+.auth-Form label, .auth-Form input{
+    background-color: white;
+    border: 1px solid black !important;
+
+}
+

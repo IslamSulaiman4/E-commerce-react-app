@@ -1,0 +1,81 @@
+.product-sub-img {
+    width: 150px;
+    height: 200px;
+}
+
+.productD {
+    text-align: center;
+    font-family:Arsenal, sans-serif;
+}
+.btn{
+    background-color: black;
+    color: #fff ;
+    width: 30%;
+    border-radius: 0px;
+    
+}
+.btn:hover{
+    background-color: #fff;
+    border-color: black;
+    color: black;
+}
+.product-img img{
+width: 250px;
+height: 300px;
+}
+
+.review img{
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 50%;
+}
+.review .date{
+    font-size: 12px;
+}
+
+ .head{
+    position: relative;
+}
+ .head::after{
+    content: '';
+    position: absolute;
+    width: 20%;
+    background-color: rgb(0, 0, 0);
+    left: 0px;
+    top: 36px;
+    height: 2px;
+}
+
+
+/* All Products  */
+.all-products{
+    
+    font-family: 'Montserrat Alternates', sans-serif;
+    text-align: center;
+
+}
+
+.all-products img{
+    width: 200px;
+    height: 250px;
+    border: 1px solid #f5f4f0 ;
+
+}
+aside{
+    height: 100vh;
+}
+.search .bttn{
+background-color:rgb(255, 255, 255);
+border-color: #000000;
+}
+.search .bttn svg{
+    font-size: 26px;
+}
+.filter{
+    border: 2px solid black;
+    height: 20px;
+}
+.filter .input-group{
+    display:flex;
+    flex-wrap: nowrap;
+}

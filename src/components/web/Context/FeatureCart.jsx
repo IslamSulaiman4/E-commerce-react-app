@@ -1,6 +1,5 @@
 import axios from "axios";
-import { createContext, useEffect, useState} from "react";
-import {toast } from 'react-toastify';
+import { createContext, useState} from "react";
 
 export const CartContext= createContext(null);
 

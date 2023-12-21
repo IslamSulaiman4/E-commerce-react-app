@@ -1,0 +1,100 @@
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600&display=swap');
+
+.category img {
+
+    width: 80px;
+    height: 100px;
+
+
+}
+
+.category {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    color: black;
+    width: 40px;
+    height: 40px;
+    background-color: #f5f4f0;
+    border-radius: 50%;
+
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    font-size: 20px;
+
+}
+
+.swiper-pagination-bullets,
+swiper-pagination-bullet-active {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+
+}
+
+.swiper-pagination-bullet {
+    background-color: rgb(11, 0, 0);
+    width: 11px;
+    height: 11px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+
+}
+
+.text{
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+.text p{
+animation-name: change;
+animation-iteration-count: infinite;
+animation-duration: 5s;
+animation-direction: alternate;
+
+
+}
+
+@keyframes change{
+    from{
+   color: black;
+   width: 150px;
+    }
+    to{
+        color:#5d482a;
+        width: 250px;
+
+    }
+    
+}
+
+.text h2{
+    overflow-x: hidden;
+    animation-name: changeColor;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+
+}
+
+@keyframes changeColor{
+    0%{
+       color: black;
+    }
+    50%{
+       color: #8b6446;
+    }
+    100%{
+        color: #bba894;
+    }
+}

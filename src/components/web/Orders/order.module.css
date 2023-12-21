@@ -1,2 +1,27 @@
-.order{
+
+.orderForm{
+    background-color: #f5f4f0;
+    border: 1px solid black;
+    font-family:  'Architects Daughter', cursive; 
+    font-weight: 500;
+    padding:5% 0 5% 0 ;
+    
+}
+.orderForm label, .auth-Form input{
+    background-color: white;
+    border: 1px solid black !important;
+
+}
+
+.head{
+    position: relative;
+}
+ .head::after{
+    content: '';
+    position: absolute;
+    width: 22%;
+    background-color: rgb(0, 0, 0);
+    left: 39%;
+    top: 47px;
+    height: 2px;
 }

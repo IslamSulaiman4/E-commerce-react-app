@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useQuery } from 'react-query';
+import Loader from '../../Shared/Loader.jsx';
 
 export default function ForgetPassword() {
     const {loading} =useQuery();
@@ -27,7 +28,7 @@ export default function ForgetPassword() {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "light",
+                theme: "dark",
                 });}
                 navigate('/login');
  }
@@ -80,17 +81,15 @@ export default function ForgetPassword() {
 
 
     if(loading){
-        return <div>
-            Loading ...
-        </div>
+        return <Loader />
     }
     return (
         <div className='container m-5 text-center d-flex justify-content-center'>
-        <div className='w-50 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
+        <div className='auth-Form w-75 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
         <h2>Reset Password</h2>
-        <form onSubmit={formic.handleSubmit}>
+        <form className='' onSubmit={formic.handleSubmit}>
         {renderInputs}
-        <button type='submit' disabled={!formic.isValid}>Reset</button>
+        <button className='btn' type='submit' disabled={!formic.isValid}>Reset</button>
         </form>
 
     

@@ -7,6 +7,8 @@ import Input from '../../Shared/Input.jsx';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loader from '../../Shared/Loader.jsx';
+import style from './order.module.css'
 
 export default function CreateOrder() {
     const Navigate=useNavigate();
@@ -35,7 +37,7 @@ export default function CreateOrder() {
                      pauseOnHover: true,
                      draggable: true,
                      progress: undefined,
-                     theme: "light",
+                     theme: "dark",
                      });
      
          }}
@@ -89,14 +91,15 @@ const back= ()=>{
 
 
     if(isLoading){
-        return <div>Loading ...</div>
+        return <Loader />
     }
         
   return (
-    <div className='cart'>
-    <div className="container">
-      <div className="row">
-        <div className="cart-items">
+
+<div className='container mt-5 mb-5  text-center d-flex justify-content-center'>
+        <div className={`${style.orderForm}`}>
+        <h2 className={`${style.head}`}>Complete Order</h2>
+        <div className="cart-items w-75 m-auto">
           <div className="products pt-5" id="products">
             <div className="item">
               <div className="product-info">
@@ -135,15 +138,12 @@ const back= ()=>{
           </div>
 
 </div>
-<div className='container m-5 text-center d-flex justify-content-center'>
-        <div className='w-75 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
-        <h2>Complete Order</h2>
         <form onSubmit={formic.handleSubmit} >
         {renderInputs}
         <div className='d-flex flex-column  align-items-center gap-4 pt-4'>
         <h2>Have a coupon ?</h2>
         <p>Add your code for an instant cart discount</p>
-          <div className="coupon-form">
+          <div className="coupon-form d-flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={24}
@@ -157,11 +157,11 @@ const back= ()=>{
               />
             </svg>
             <input type="text" placeholder="Coupon Code" />
-            <button>Apply</button>
+            <button className='btn'>Apply</button>
           </div>
 
-        <button type='submit' disabled={!formic.isValid}>Submit</button>
-        <button type='submit' onClick={back}>Cancel Order</button>
+        <button className='btn' type='submit' disabled={!formic.isValid}>Submit</button>
+        <button className='btn' type='submit' onClick={back}>Cancel Order</button>
 
         </div>
 
@@ -170,12 +170,7 @@ const back= ()=>{
         </div>
 
     </div>
-  
-  
 
-        
-     </div>
-    </div>
-  </div>
+
   )
 }

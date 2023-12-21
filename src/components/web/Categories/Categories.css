@@ -1,13 +1,5 @@
-img {
-
-    width: 80px;
-    height: 80px;
-
-
-}
 
 .category {
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,7 +11,7 @@ img {
     color: black;
     width: 40px;
     height: 40px;
-    background-color: rgb(226, 226, 226);
+    background-color: #f5f4f0;
     border-radius: 50%;
 
 }
@@ -49,4 +41,34 @@ a {
     text-decoration: none;
     color: black;
 
+}
+/* Categories Details*/
+.products{
+    font-family: 'Montserrat Alternates', sans-serif;
+
+}
+.products .category-img{
+    width: 200px;
+    height: 300px;
+}
+.products .details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.products .product .btn {
+    border-radius: 0px;
+ background-color: black;
+ color: #fff;
+}
+.products .product .btn:hover {
+    background-color: #fff;
+    border-color: black;
+    color: black;
+}
+.products .product{
+    width: 70%;
+    border-bottom: 1px solid #edebe6;
+    padding-bottom: 10px;
 }

@@ -5,6 +5,9 @@ import { useFormik, validateYupSchema } from 'formik';
 import axios from 'axios';
 import {toast } from 'react-toastify';
 import { useQuery } from 'react-query';
+import Loader from '../../Shared/Loader.jsx';
+import './Auth.css'
+import { Link } from 'react-router-dom';
 
 export default function Register() {
     const {loading} =useQuery();
@@ -32,7 +35,7 @@ export default function Register() {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                theme: "light",
+                theme: "dark",
                 });
     }}
 
@@ -91,17 +94,17 @@ export default function Register() {
     )
 
     if(loading){
-        return <div>
-            Loading ...
-        </div>
+        return <Loader />
     }
   return (
     <div className='container m-5 text-center d-flex justify-content-center'>
-        <div className='w-50 d-felx align-items-center flex-wrap border border-1 rounded rounded-1 p-5'>
-        <h2>Create Account</h2>
+        <div className='auth-Form w-75 d-felx align-items-center flex-wrap  p-5'>
+        <h2 className=' fw-bold '>Create Account</h2>
         <form onSubmit={formic.handleSubmit} encType='multipart/form-data'>
         {renderInputs}
-        <button type='submit' disabled={!formic.isValid}>Sign up</button>
+        <button className='mt-2 btn' type='submit' disabled={!formic.isValid}>Sign up</button>
+        <h4 className='mt-4 '>Have an account?</h4>
+        <Link className='btn' to='/login'> Sign in</Link>
         </form>
 
         </div>
