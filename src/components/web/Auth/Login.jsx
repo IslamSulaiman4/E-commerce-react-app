@@ -22,11 +22,12 @@ navigate(-1);
  
     
     const initialValues={
-        email:'',
+        username:'',
         password:'',
     }
     const onSubmit=async users=>{
-   const {data}=await axios.post(' https://ecommerce-node4.vercel.app/auth/signin',users);
+   const {data}=await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`,{  username: "mor_2314",
+    password: "83r5^_"});
         if(data.message=='success'){
             localStorage.setItem("userToken",data.token);
             setUserToken(data.token);
@@ -53,11 +54,11 @@ navigate(-1);
     const inputs=[
 
         {
-            name:'email',
-            id:'email',
-            type:'email',
-            title:'User email',    
-            value:formic.values.email,
+            name:'username',
+            id:'username',
+            type:'text',
+            title:'User name',    
+            value:formic.values.username,
         },
         {
             name:'password',

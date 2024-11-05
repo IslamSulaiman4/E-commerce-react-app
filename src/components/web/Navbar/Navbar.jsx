@@ -28,7 +28,7 @@ const  logout=()=>{
     <div>     
       <nav className="navbar navbar-expand-lg border-bottom border-dark" >
     <div className="container ">
-    <a className="navbar-brand fs-2" href="#">T-shop</a>
+    <a className="navbar-brand fs-2" href="#">Cartify</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
     </button>
@@ -66,8 +66,6 @@ const  logout=()=>{
       </a>
       <ul className="dropdown-menu ">
         {userToken==null? <>
-        <li><Link className="dropdown-item" to="/register">register</Link></li>
-        <li><hr className="dropdown-divider" /></li>
         <li><Link className="dropdown-item" to="/login">login</Link></li>
         </>    
 : <><li><Link className="dropdown-item" to="/profile">Profile</Link></li>

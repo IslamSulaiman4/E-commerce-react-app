@@ -16,20 +16,18 @@ export default function AllCategories() {
     const getAllCatigories= async ()=>{
         const token=localStorage.getItem('userToken');
 
-        const {data}= await axios.get(`${import.meta.env.VITE_API_URL}/categories/active?limit=9`,
-        {headers:{Authorization:`Tariq__${token}`}});
-        console.log(data);
-    
+        const {data}= await axios.get(`${import.meta.env.VITE_API_URL}/products/categories`);    
         return data;
       }
       const {data,isLoading} =useQuery('get all categories',getAllCatigories)
+      
   return (
     <div className='container pt-5 '>
     <div className='swiper-custom-pagination '></div>
         <Swiper
         modules={[Navigation, Pagination,Autoplay]}
         spaceBetween={60}
-        slidesPerView={5.7}
+        slidesPerView={3.7}
         navigation
         loop={true}
         autoplay={{
@@ -39,15 +37,15 @@ export default function AllCategories() {
           clickable: true,
         el:'.swiper-custom-pagination' }}
         onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
+        onSwiper={(swiper) => console.log('swiper')}
       >
     
-     {data?.categories.length?data ?.categories.map( (category)=>
-      <SwiperSlide key={category._id}>
+     {data?data ?.map( (category)=>
+      <SwiperSlide key={category.id}>
     
-    <Link to={`/products/category/${category._id}`}>
+    <Link to={`/products/category/${category}`}>
     <div className="category">
-      <img src={category.image.secure_url} />
+      <p>{category}</p>
       </div>  
     </Link>
     

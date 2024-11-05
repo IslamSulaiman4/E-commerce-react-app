@@ -1,12 +1,6 @@
   @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600&display=swap');
 
-.category img {
 
-    width: 80px;
-    height: 100px;
-
-
-}
 
 .category {
 
@@ -21,7 +15,8 @@
     color: black;
     width: 40px;
     height: 40px;
-    background-color: #f5f4f0;
+    background-color: #e6e6e6;
+    
     border-radius: 50%;
 
 }

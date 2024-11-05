@@ -19,19 +19,12 @@
     border-color: black;
     color: black;
 }
-.product-img img{
-width: 250px;
-height: 300px;
+.product-img {
+width: 350px;
+height: 420px;
 }
 
-.review img{
-    width: 25px !important;
-    height: 25px !important;
-    border-radius: 50%;
-}
-.review .date{
-    font-size: 12px;
-}
+
 
  .head{
     position: relative;
