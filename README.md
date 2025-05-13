@@ -56,7 +56,8 @@ npm run dev
 
 ## 🙋‍♀️ About Me
 
-I'm **Islam Sulaiman**, a passionate frontend developer currently enrolled in the Udacity Nanodegree (Frontend Track), aiming to create user-friendly, accessible, and performant web applications.
+I'm **Islam Sulaiman**, a passionate Frontend Developer currently enrolled in the **Udacity Nanodegree – Frontend Track**. I enjoy building accessible, responsive, and user-friendly web applications, and I'm always eager to learn and grow in the field of web development.
 
-📫 Contact me at: islam2001shrif@gmail.com  
-🔗 [LinkedIn](https://www.linkedin.com/in/islam-sulaiman4)
+📫 **Email:** islam2001shrif@gmail.com  
+🔗 **LinkedIn:** [linkedin.com/in/islam-sulaiman4](https://www.linkedin.com/in/islam-sulaiman4)
+
