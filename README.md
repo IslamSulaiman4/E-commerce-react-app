@@ -54,7 +54,7 @@ npm run dev
 ```
 ---
 
-## 🙋‍♀️ About Me
+## 🧕 About Me
 
 I'm **Islam Sulaiman**, a passionate Frontend Developer currently enrolled in the **Udacity Nanodegree – Frontend Track**. I enjoy building accessible, responsive, and user-friendly web applications, and I'm always eager to learn and grow in the field of web development.
 
