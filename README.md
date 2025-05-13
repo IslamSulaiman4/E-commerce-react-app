@@ -1,6 +1,9 @@
 # 🛍️ T-Shop – E-commerce React Website
 
-**T-Shop** is a dynamic and responsive e-commerce website developed using **React** and **Vite**. This project was my **graduation project** for a **Full Stack Diploma**, where I applied all my knowledge of frontend development, particularly with React.
+## 🎓 About the Project
+
+**T-Shop** is a dynamic and responsive e-commerce website developed as my graduation project for a Full Stack Diploma. While the program covered both frontend and backend, this project focuses on the **frontend part**, built using **HTML, CSS, JavaScript, React**, and **Vite**.
+
 
 > Although the project used internal APIs from the academy, a demo video is available to showcase the full functionality of the app.
 
@@ -10,7 +13,7 @@
 
 - 🛒 Product listings with product details
 - 🧾 Add to cart and shopping cart management
-- 🔍 Search and filter options (limited due to API constraints)
+- 🔍 Search and filter functionality (note: limited due to API constraints)
 - 💬 Clean and interactive UI design
 - ⚛️ Built with React components, using React Router for navigation
 
@@ -35,8 +38,9 @@
 
 ## 📹 Demo Video
 
-> 🎥 *A recorded demo is available to showcase the full functionality of the project.*  
-> *((https://drive.google.com/file/d/1I0dcp0gxwvAQBc_jh1xdYn4598N1_DlS/view?usp=drive_link))*
+> 🎥 *A recorded demo is available to showcase the full functionality of the project.*
+> 🎥 *[Watch the demo video](https://drive.google.com/file/d/1I0dcp0gxwvAQBc_jh1xdYn4598N1_DlS/view?usp=drive_link)*
+
 
 ---
 
@@ -56,3 +60,13 @@ npm install
 
 # Run the development server
 npm run dev
+
+---
+
+## 🙋‍♀️ About Me
+
+I'm **Islam Sulaiman**, a passionate frontend developer currently enrolled in the Udacity Nanodegree (Frontend Track), aiming to create user-friendly, accessible, and performant web applications.
+
+📫 Contact me at: islam2001shrif@gmail.com  
+🔗 [LinkedIn](https://www.linkedin.com/in/islam-sulaiman4)
+
